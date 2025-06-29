@@ -1,16 +1,16 @@
-# 🛠️ Product Comparison Backend (Spring Boot + Selenium + Executor Service)
+# 🛠️ Product Comparison Backend (Spring Boot + Selenium + Gemini AI)
 
-This backend service powers the Product Comparison App. It fetches real-time product data from **Amazon** and **Flipkart** using **Selenium**, compares the results using Gemini AI, and returns a detailed JSON report.
+This is the backend for the Product Comparison App. It fetches real-time data from **Amazon** and **Flipkart** using **Selenium**, compares the products using **Gemini AI**, and returns a smart, structured response.
 
 ---
 
 ## 🌟 Features
 
-- ✅ Scrapes live Amazon & Flipkart listings using **Selenium WebDriver**
-- ✅ Compares features, specs, pricing, and more
-- ✅ Uses **Gemini 1.5 Flash** for intelligent comparison
-- ✅ Clean, structured API response (JSON)
-- ✅ Deployable to Render without Docker
+- 🔍 Scrapes live Amazon & Flipkart listings with **Selenium**
+- ⚡ Uses **ExecutorService** for parallel scraping (fast!)
+- 🧠 Sends data to **Gemini AI** for intelligent comparison
+- 📦 Returns structured product analysis in JSON format
+- 🚀 Works on **Render.com** with headless Chrome setup
 
 ---
 
@@ -24,45 +24,38 @@ cd product-comparison-backend
 
 2. Requirements
 
-    Java 17
+    Java 17+
 
-    Maven
+    Maven or ./mvnw wrapper
+
+    Google API Key + Gemini model access (if using)
 
     Chrome or Chromium browser
 
-    ChromeDriver installed and in PATH
+    ChromeDriver (installed and in PATH)
 
-    💡 Download ChromeDriver from https://sites.google.com/chromium.org/driver
+    💡 Get ChromeDriver: https://sites.google.com/chromium.org/driver
 
 3. Run the App Locally
 
 ./mvnw spring-boot:run
 
-Or (if Maven is installed):
+Or (with installed Maven):
 
 mvn spring-boot:run
 
-4. Test the API
-
-curl -X POST http://localhost:8080/combined \
-  -H "Content-Type: application/json" \
-  -d '"wireless headphones"'
-
-🧪 API Endpoint
-
+🧪 API Usage
 POST /combined
-Request Body: a raw JSON string containing the product name
 
-Example:
+Request body (raw string):
 
-"laptop backpack"
+"wireless headphones"
 
-🧠 How It Works
+Response:
 
-    🕵️ Selenium scrapes Amazon & Flipkart using headless Chrome
-
-    📦 Product JSONs are created using custom logic
-
-    🧠 Gemini AI compares product features and pricing
-
-    📤 JSON summary is returned to the frontend
+{
+  "comparison_table": [...],
+  "differences_explained": "...",
+  "value_analysis": "...",
+  ...
+}
